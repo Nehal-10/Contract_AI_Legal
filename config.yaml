@@ -1,0 +1,52 @@
+# Contract Risk Intelligence System Configuration
+
+model:
+  embedding_model: "nlpaueb/legal-bert-base-uncased"
+  embedding_dim: 768
+  test_size: 0.2
+  random_state: 42
+  cv_folds: 5
+  max_clause_length: 512
+
+training:
+  clause_classifier_params:
+    model_type: "xgboost"
+    n_estimators: 200
+    max_depth: 6
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+  risk_regressor_params:
+    model_type: "xgboost"
+    n_estimators: 150
+    max_depth: 5
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+  compliance_classifier_params:
+    model_type: "xgboost"
+    n_estimators: 150
+    max_depth: 4
+    learning_rate: 0.1
+    subsample: 0.8
+    colsample_bytree: 0.8
+
+data:
+  min_clause_words: 5
+  clause_separators:
+    - "\n\n"
+    - ". "
+    - "; "
+  min_samples_per_category: 10
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  max_upload_size: 10485760
+  debug: false
+
+paths:
+  data_dir: "data"
+  models_dir: "models"
+  logs_dir: "logs"
+  outputs_dir: "outputs"

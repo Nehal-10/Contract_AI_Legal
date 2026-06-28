@@ -1,0 +1,27 @@
+2026-06-28 17:34:49 | INFO     | src.utils:setup_logging:50 - Logging initialized. Log file: logs\contract_risk_20260628_173449.log
+2026-06-28 17:34:49 | INFO     | src.predictor:_load_models:51 - Loading models from models
+2026-06-28 17:34:49 | INFO     | src.models:load_models:407 - Loaded clause_category_encoder from models\clause_category_encoder.pkl
+2026-06-28 17:34:49 | INFO     | src.models:load_models:407 - Loaded clause_classifier from models\clause_classifier.pkl
+2026-06-28 17:34:49 | INFO     | src.models:load_models:407 - Loaded compliance_classifier from models\compliance_classifier.pkl
+2026-06-28 17:34:49 | INFO     | src.models:load_models:407 - Loaded risk_level_encoder from models\risk_level_encoder.pkl
+2026-06-28 17:34:49 | INFO     | src.models:load_models:407 - Loaded risk_regressor from models\risk_regressor.pkl
+2026-06-28 17:34:49 | INFO     | src.models:load_models:413 - Loaded scaler from models\scaler.pkl
+2026-06-28 17:34:49 | INFO     | src.predictor:_load_models:78 - Models loaded successfully
+2026-06-28 17:34:49 | INFO     | api.app:<module>:56 - Frontend mounted at /frontend from D:\Nehal\Projects\AIML Project\claude\Folder1\contract_risk_ai\frontend
+2026-06-28 17:34:49 | INFO     | src.predictor:_load_models:51 - Loading models from models
+2026-06-28 17:34:49 | INFO     | src.models:load_models:407 - Loaded clause_category_encoder from models\clause_category_encoder.pkl
+2026-06-28 17:34:49 | INFO     | src.models:load_models:407 - Loaded clause_classifier from models\clause_classifier.pkl
+2026-06-28 17:34:49 | INFO     | src.models:load_models:407 - Loaded compliance_classifier from models\compliance_classifier.pkl
+2026-06-28 17:34:49 | INFO     | src.models:load_models:407 - Loaded risk_level_encoder from models\risk_level_encoder.pkl
+2026-06-28 17:34:49 | INFO     | src.models:load_models:407 - Loaded risk_regressor from models\risk_regressor.pkl
+2026-06-28 17:34:49 | INFO     | src.models:load_models:413 - Loaded scaler from models\scaler.pkl
+2026-06-28 17:34:49 | INFO     | src.predictor:_load_models:78 - Models loaded successfully
+2026-06-28 17:34:49 | INFO     | __main__:serve_mode:254 - Starting server on http://0.0.0.0:8000
+2026-06-28 17:34:49 | INFO     | __main__:serve_mode:255 - Docs available at http://0.0.0.0:8000/docs
+2026-06-28 17:35:03 | INFO     | src.predictor:predict_contract:280 - Analyzing contract...
+2026-06-28 17:35:03 | INFO     | src.pdf_processor:extract_text:42 - Extracting text from PDF...
+2026-06-28 17:35:03 | INFO     | src.pdf_processor:extract_text:71 - Extracted 7551 characters from PDF
+2026-06-28 17:35:03 | INFO     | src.pdf_processor:segment_clauses:111 - Segmenting text into clauses...
+2026-06-28 17:35:03 | INFO     | src.pdf_processor:segment_clauses:140 - Found 18 clauses using numbered section strategy
+2026-06-28 17:35:03 | INFO     | src.pdf_processor:process_pdf:249 - Processed PDF into 18 clauses
+2026-06-28 17:35:03 | ERROR    | src.predictor:predict_contract:304 - Contract analysis failed: 'str' object has no attribute 'get'

@@ -1,0 +1,45 @@
+2026-06-28 21:43:31 | INFO     | src.utils:setup_logging:50 - Logging initialized. Log file: logs\contract_risk_20260628_214331.log
+2026-06-28 21:43:31 | INFO     | src.predictor:_load_models:1132 - Loading models from models
+2026-06-28 21:43:31 | INFO     | src.models:load_models:407 - Loaded clause_category_encoder from models\clause_category_encoder.pkl
+2026-06-28 21:43:32 | INFO     | src.models:load_models:407 - Loaded clause_classifier from models\clause_classifier.pkl
+2026-06-28 21:43:32 | INFO     | src.models:load_models:407 - Loaded compliance_classifier from models\compliance_classifier.pkl
+2026-06-28 21:43:32 | INFO     | src.models:load_models:407 - Loaded risk_level_encoder from models\risk_level_encoder.pkl
+2026-06-28 21:43:32 | INFO     | src.models:load_models:407 - Loaded risk_regressor from models\risk_regressor.pkl
+2026-06-28 21:43:32 | INFO     | src.models:load_models:413 - Loaded scaler from models\scaler.pkl
+2026-06-28 21:43:32 | INFO     | src.predictor:_load_models:1159 - Models loaded successfully
+2026-06-28 21:43:32 | INFO     | api.app:<module>:56 - Frontend mounted at /frontend from D:\Nehal\Projects\AIML Project\claude\Folder2\contract_risk_ai\frontend
+2026-06-28 21:43:32 | INFO     | src.predictor:_load_models:1132 - Loading models from models
+2026-06-28 21:43:32 | INFO     | src.models:load_models:407 - Loaded clause_category_encoder from models\clause_category_encoder.pkl
+2026-06-28 21:43:33 | INFO     | src.models:load_models:407 - Loaded clause_classifier from models\clause_classifier.pkl
+2026-06-28 21:43:33 | INFO     | src.models:load_models:407 - Loaded compliance_classifier from models\compliance_classifier.pkl
+2026-06-28 21:43:33 | INFO     | src.models:load_models:407 - Loaded risk_level_encoder from models\risk_level_encoder.pkl
+2026-06-28 21:43:33 | INFO     | src.models:load_models:407 - Loaded risk_regressor from models\risk_regressor.pkl
+2026-06-28 21:43:33 | INFO     | src.models:load_models:413 - Loaded scaler from models\scaler.pkl
+2026-06-28 21:43:33 | INFO     | src.predictor:_load_models:1159 - Models loaded successfully
+2026-06-28 21:43:33 | INFO     | __main__:serve_mode:254 - Starting server on http://0.0.0.0:8000
+2026-06-28 21:43:33 | INFO     | __main__:serve_mode:255 - Docs available at http://0.0.0.0:8000/docs
+2026-06-28 21:43:42 | INFO     | src.embedding_generator:initialize:61 - Initializing LegalBERT model: nlpaueb/legal-bert-base-uncased
+2026-06-28 21:43:42 | INFO     | src.embedding_generator:initialize:62 - Using device: cpu
+2026-06-28 21:43:46 | INFO     | src.embedding_generator:initialize:74 - LegalBERT model initialized successfully
+2026-06-28 21:43:46 | INFO     | src.embedding_generator:generate_embeddings:117 - Generating embeddings for 1 texts
+2026-06-28 21:43:46 | INFO     | src.embedding_generator:generate_embeddings:152 - Generated embeddings with shape: (1, 768)
+2026-06-28 21:47:25 | INFO     | src.predictor:predict_contract:1520 - Analyzing contract...
+2026-06-28 21:47:25 | INFO     | src.pdf_processor:extract_text:378 - Extracting text from PDF...
+2026-06-28 21:47:25 | INFO     | src.pdf_processor:extract_text:407 - Extracted 5697 characters from PDF
+2026-06-28 21:47:25 | INFO     | src.pdf_processor:segment_clauses:447 - Segmenting text into clauses...
+2026-06-28 21:47:25 | INFO     | src.pdf_processor:segment_clauses:476 - Found 10 clauses using numbered section strategy
+2026-06-28 21:47:25 | INFO     | src.pdf_processor:process_pdf:586 - Processed PDF into 10 clauses
+2026-06-28 21:47:26 | INFO     | src.predictor:predict_contract:1534 - Extracted 10 clauses
+2026-06-28 21:47:26 | INFO     | src.embedding_generator:generate_embeddings:117 - Generating embeddings for 10 texts
+2026-06-28 21:47:34 | INFO     | src.embedding_generator:generate_embeddings:152 - Generated embeddings with shape: (10, 768)
+2026-06-28 21:47:34 | INFO     | src.predictor:_aggregate_results:1696 - Contract analysis complete: 10 clauses, Risk Level: Medium, Compliance Rate: 20.0%
+2026-06-28 21:55:25 | INFO     | src.predictor:predict_contract:1520 - Analyzing contract...
+2026-06-28 21:55:25 | INFO     | src.pdf_processor:extract_text:378 - Extracting text from PDF...
+2026-06-28 21:55:26 | INFO     | src.pdf_processor:extract_text:407 - Extracted 7551 characters from PDF
+2026-06-28 21:55:26 | INFO     | src.pdf_processor:segment_clauses:447 - Segmenting text into clauses...
+2026-06-28 21:55:26 | INFO     | src.pdf_processor:segment_clauses:476 - Found 18 clauses using numbered section strategy
+2026-06-28 21:55:26 | INFO     | src.pdf_processor:process_pdf:586 - Processed PDF into 18 clauses
+2026-06-28 21:55:26 | INFO     | src.predictor:predict_contract:1534 - Extracted 18 clauses
+2026-06-28 21:55:26 | INFO     | src.embedding_generator:generate_embeddings:117 - Generating embeddings for 18 texts
+2026-06-28 21:55:31 | INFO     | src.embedding_generator:generate_embeddings:152 - Generated embeddings with shape: (18, 768)
+2026-06-28 21:55:31 | INFO     | src.predictor:_aggregate_results:1696 - Contract analysis complete: 18 clauses, Risk Level: Medium, Compliance Rate: 27.8%

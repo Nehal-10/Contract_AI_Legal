@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contract Risk Intelligence</title>
+    <style>
+        /* --- CSS Variables & Reset --- */
+        :root {
+            --bg-primary: #0b1120;
+            --bg-secondary: #1a2332;
+            --bg-card: #1f2a3f;
+            --text-primary: #e8edf5;
+            --text-secondary: #94a3b8;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --risk-low: #22c55e;
+            --risk-medium: #eab308;
+            --risk-high: #ef4444;
+            --border-color: #2a3a55;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1300px;
+            width: 100%;
+        }
+
+        /* --- Header --- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo span {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            -webkit-text-fill-color: var(--text-secondary);
+        }
+
+        .health-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--bg-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            font-size: 0.85rem;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot.online { background: var(--risk-low); box-shadow: 0 0 10px var(--risk-low); }
+        .dot.offline { background: var(--risk-high); }
+
+        /* --- Tabs --- */
+        .tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            padding: 0.6rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+        }
+
+        .tab-btn.active {
+            color: var(--accent-blue);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Cards --- */
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.8rem;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* --- Upload Area --- */
+        .upload-area {
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .upload-area:hover {
+            border-color: var(--accent-blue);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .upload-area.dragover {
+            border-color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.08);
+        }
+
+        .upload-area svg {
+            width: 48px;
+            height: 48px;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .upload-area p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .upload-area .highlight {
+            color: var(--accent-blue);
+            font-weight: 600;
+        }
+
+        /* --- Text Area --- */
+        textarea {
+            width: 100%;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            resize: vertical;
+            min-height: 120px;
+            font-family: inherit;
+            transition: border 0.2s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            padding: 0.7rem 1.8rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border-color);
+        }
+
+        /* --- Results --- */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-card {
+            background: var(--bg-primary);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .stat-card .label {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .risk-gauge {
+            width: 100%;
+            height: 12px;
+            background: var(--bg-primary);
+            border-radius: 50px;
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+
+        .risk-gauge .fill {
+            height: 100%;
+            border-radius: 50px;
+            transition: width 1s ease;
+        }
+
+        .risk-gauge .fill.low { background: var(--risk-low); }
+        .risk-gauge .fill.medium { background: var(--risk-medium); }
+        .risk-gauge .fill.high { background: var(--risk-high); }
+
+        .badge {
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+        .badge-low { background: rgba(34, 197, 94, 0.2); color: var(--risk-low); }
+        .badge-medium { background: rgba(234, 179, 8, 0.2); color: var(--risk-medium); }
+        .badge-high { background: rgba(239, 68, 68, 0.2); color: var(--risk-high); }
+        .badge-compliant { background: rgba(34, 197, 94, 0.2); color: var(--risk-low); }
+        .badge-noncompliant { background: rgba(239, 68, 68, 0.2); color: var(--risk-high); }
+
+        .clause-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .clause-table th {
+            text-align: left;
+            padding: 0.75rem 0.5rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .clause-table td {
+            padding: 0.75rem 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        .clause-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .clause-text-preview {
+            max-width: 300px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Single Clause Result */
+        .result-detail {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 700px) {
+            .result-detail {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .info-row .label {
+            color: var(--text-secondary);
+        }
+
+        /* --- Loading Spinner --- */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.6s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* --- Misc --- */
+        .mt-2 { margin-top: 1rem; }
+        .mb-2 { margin-bottom: 1rem; }
+        .flex { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+        .text-center { text-align: center; }
+        .text-secondary { color: var(--text-secondary); }
+
+        .error-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--risk-high);
+            border-radius: 8px;
+            padding: 1rem;
+            color: var(--risk-high);
+            margin-top: 1rem;
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <h1>⚖️ Contract Risk AI</h1>
+                <span>LegalBERT + ML Intelligence</span>
+            </div>
+            <div class="health-badge" id="healthBadge">
+                <span class="dot offline" id="healthDot"></span>
+                <span id="healthText">Connecting...</span>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="pdf">📄 Analyze Contract (PDF)</button>
+            <button class="tab-btn" data-tab="clause">📝 Analyze Single Clause</button>
+        </div>
+
+        <!-- Tab: PDF Upload -->
+        <div id="tab-pdf" class="tab-content active">
+            <div class="card">
+                <div class="card-title">📁 Upload Contract Document</div>
+                <div id="dropArea" class="upload-area">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                    </svg>
+                    <p>Drag & drop your <span class="highlight">PDF contract</span> here, or click to browse.</p>
+                    <p style="font-size:0.8rem; margin-top:5px;">Supports .pdf up to 10MB</p>
+                </div>
+                <input type="file" id="fileInput" accept=".pdf" style="display:none;">
+                <div class="flex mt-2">
+                    <button class="btn btn-primary" id="analyzeBtn" disabled>🚀 Analyze Contract</button>
+                    <span id="fileName" class="text-secondary" style="font-size:0.9rem;">No file selected</span>
+                </div>
+                <div id="pdfLoading" class="hidden text-center mt-2"><span class="spinner"></span> Processing contract... (this may take a moment)</div>
+            </div>
+
+            <!-- Results Container for PDF -->
+            <div id="pdfResults" class="hidden">
+                <!-- Summary Cards will be injected here -->
+                <div id="summaryCards"></div>
+                <!-- Clauses Table -->
+                <div class="card">
+                    <div class="card-title">📋 Clause-Level Analysis</div>
+                    <div style="overflow-x:auto;">
+                        <table class="clause-table" id="clauseTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Clause Text</th>
+                                    <th>Category</th>
+                                    <th>Risk</th>
+                                    <th>Compliance</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody id="clauseTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab: Single Clause -->
+        <div id="tab-clause" class="tab-content">
+            <div class="card">
+                <div class="card-title">✍️ Enter Clause Text</div>
+                <textarea id="clauseInput" placeholder="Paste a legal clause here, e.g., 'Either party may terminate this Agreement at any time without liability.'"></textarea>
+                <div class="flex mt-2">
+                    <button class="btn btn-primary" id="predictBtn">🔮 Predict</button>
+                </div>
+                <div id="clauseLoading" class="hidden text-center mt-2"><span class="spinner"></span> Analyzing...</div>
+            </div>
+
+            <!-- Single Clause Result -->
+            <div id="clauseResult" class="card hidden">
+                <div class="card-title">📊 Prediction Results</div>
+                <div id="clauseResultContent"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="margin-top: 3rem; text-align: center; color: var(--text-secondary); font-size: 0.8rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
+            Powered by LegalBERT · Supervised ML · FastAPI
+        </div>
+    </div>
+
+    <script>
+        // --- Configuration ---
+        const API_BASE = 'http://localhost:8000';
+
+        // --- DOM Elements ---
+        const dropArea = document.getElementById('dropArea');
+        const fileInput = document.getElementById('fileInput');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const fileName = document.getElementById('fileName');
+        const pdfLoading = document.getElementById('pdfLoading');
+        const pdfResults = document.getElementById('pdfResults');
+        const summaryCards = document.getElementById('summaryCards');
+        const clauseTableBody = document.getElementById('clauseTableBody');
+
+        const clauseInput = document.getElementById('clauseInput');
+        const predictBtn = document.getElementById('predictBtn');
+        const clauseLoading = document.getElementById('clauseLoading');
+        const clauseResult = document.getElementById('clauseResult');
+        const clauseResultContent = document.getElementById('clauseResultContent');
+
+        const healthDot = document.getElementById('healthDot');
+        const healthText = document.getElementById('healthText');
+
+        let selectedFile = null;
+
+        // --- Tabs ---
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+                document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+            });
+        });
+
+        // --- File Upload Logic ---
+        dropArea.addEventListener('click', () => fileInput.click());
+        dropArea.addEventListener('dragover', (e) => { e.preventDefault(); dropArea.classList.add('dragover'); });
+        dropArea.addEventListener('dragleave', () => dropArea.classList.remove('dragover'));
+        dropArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropArea.classList.remove('dragover');
+            if (e.dataTransfer.files.length) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        function handleFile(file) {
+            if (file.type !== 'application/pdf') {
+                alert('Please select a valid PDF file.');
+                return;
+            }
+            selectedFile = file;
+            fileName.textContent = `📎 ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+            analyzeBtn.disabled = false;
+        }
+
+        // --- Health Check ---
+        async function checkHealth() {
+            try {
+                const res = await fetch(`${API_BASE}/health`);
+                if (res.ok) {
+                    const data = await res.json();
+                    healthDot.className = 'dot online';
+                    healthText.textContent = 'Model Ready';
+                } else {
+                    throw new Error('Not ready');
+                }
+            } catch (e) {
+                healthDot.className = 'dot offline';
+                healthText.textContent = 'Server Offline';
+            }
+        }
+        checkHealth();
+        setInterval(checkHealth, 5000);
+
+        // --- Analyze PDF ---
+        analyzeBtn.addEventListener('click', async () => {
+            if (!selectedFile) return;
+
+            const formData = new FormData();
+            formData.append('file', selectedFile);
+
+            pdfLoading.classList.remove('hidden');
+            pdfResults.classList.add('hidden');
+            analyzeBtn.disabled = true;
+
+            try {
+                const response = await fetch(`${API_BASE}/contract-analysis`, {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.detail || 'Analysis failed');
+                }
+
+                const result = await response.json();
+                if (result.status === 'error') {
+                    throw new Error(result.message || 'Unknown error');
+                }
+
+                renderContractResults(result.data);
+
+            } catch (err) {
+                alert(`Error: ${err.message}`);
+                console.error(err);
+            } finally {
+                pdfLoading.classList.add('hidden');
+                analyzeBtn.disabled = false;
+            }
+        });
+
+        function renderContractResults(data) {
+            pdfResults.classList.remove('hidden');
+
+            const analysis = data.contract_analysis || {};
+            const summary = data.risk_summary || {};
+            const clauses = data.clause_predictions || [];
+
+            // Summary Cards
+            const overallRisk = summary.overall_risk_level || 'Unknown';
+            const riskColor = overallRisk === 'High' ? 'var(--risk-high)' :
+                             overallRisk === 'Medium' ? 'var(--risk-medium)' : 'var(--risk-low)';
+
+            summaryCards.innerHTML = `
+                <div class="summary-grid">
+                    <div class="stat-card">
+                        <div class="value" style="color:${riskColor};">${summary.overall_risk_percentage || 'N/A'}</div>
+                        <div class="label">Overall Risk Score</div>
+                        <div class="risk-gauge">
+                            <div class="fill ${overallRisk.toLowerCase()}" style="width: ${summary.overall_risk_percentage || 0};"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="value" style="color:${riskColor};">${overallRisk}</div>
+                        <div class="label">Risk Level</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="value">${analysis.total_clauses || 0}</div>
+                        <div class="label">Total Clauses</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="value" style="color: ${analysis.compliance_rate > 0.7 ? 'var(--risk-low)' : 'var(--risk-high)'};">
+                            ${(analysis.compliance_rate * 100 || 0).toFixed(1)}%
+                        </div>
+                        <div class="label">Compliance Rate</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="value" style="color: var(--risk-high);">${analysis.high_risk_clauses_count || 0}</div>
+                        <div class="label">High Risk Clauses</div>
+                    </div>
+                </div>
+            `;
+
+            // Clauses Table
+            clauseTableBody.innerHTML = '';
+            if (clauses.length === 0) {
+                clauseTableBody.innerHTML = `<tr><td colspan="6" class="text-center text-secondary">No clauses found in this contract.</td></tr>`;
+                return;
+            }
+
+            clauses.forEach((item, idx) => {
+                const pred = item.predictions || {};
+                const riskLevel = pred.risk_level?.level_name || 'N/A';
+                const riskScore = (pred.risk_score || 0).toFixed(2);
+                const category = pred.clause_category?.category_name || 'N/A';
+                const compliance = pred.compliance || {};
+                const isCompliant = compliance.is_compliant;
+                const compText = isCompliant ? '✅ Compliant' : '❌ Non-Compliant';
+                const compClass = isCompliant ? 'badge-compliant' : 'badge-noncompliant';
+                const riskClass = riskLevel === 'High' ? 'badge-high' : riskLevel === 'Medium' ? 'badge-medium' : 'badge-low';
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${idx + 1}</td>
+                    <td class="clause-text-preview" title="${item.clause_text || ''}">${item.clause_text || 'N/A'}</td>
+                    <td>${category}</td>
+                    <td><span class="badge ${riskClass}">${riskLevel}</span></td>
+                    <td><span class="badge ${compClass}">${compText}</span></td>
+                    <td>${riskScore}</td>
+                `;
+                clauseTableBody.appendChild(tr);
+            });
+        }
+
+        // --- Predict Single Clause ---
+        predictBtn.addEventListener('click', async () => {
+            const text = clauseInput.value.trim();
+            if (!text) {
+                alert('Please enter a clause text.');
+                return;
+            }
+
+            clauseLoading.classList.remove('hidden');
+            clauseResult.classList.add('hidden');
+            predictBtn.disabled = true;
+
+            try {
+                const response = await fetch(`${API_BASE}/predict/clause`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ clause_text: text, return_embeddings: false })
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.detail || 'Prediction failed');
+                }
+
+                const result = await response.json();
+                if (result.status === 'error') {
+                    throw new Error(result.message || 'Unknown error');
+                }
+
+                renderSingleResult(result.data);
+
+            } catch (err) {
+                alert(`Error: ${err.message}`);
+                console.error(err);
+            } finally {
+                clauseLoading.classList.add('hidden');
+                predictBtn.disabled = false;
+            }
+        });
+
+        function renderSingleResult(data) {
+            clauseResult.classList.remove('hidden');
+            const pred = data.predictions || {};
+
+            const riskScore = (pred.risk_score || 0).toFixed(3);
+            const riskPct = (pred.risk_score || 0) * 100;
+            const riskLevel = pred.risk_level?.level_name || 'N/A';
+            const category = pred.clause_category?.category_name || 'N/A';
+            const compliance = pred.compliance || {};
+            const isCompliant = compliance.is_compliant;
+            const compText = isCompliant ? '✅ Compliant' : '❌ Non-Compliant';
+            const compProb = (compliance.is_compliant !== undefined ? (compliance.is_compliant ? 1 : 0) : 0); // Simplified
+            const riskColor = riskLevel === 'High' ? 'var(--risk-high)' :
+                             riskLevel === 'Medium' ? 'var(--risk-medium)' : 'var(--risk-low)';
+
+            clauseResultContent.innerHTML = `
+                <div class="result-detail">
+                    <div>
+                        <div class="info-row"><span class="label">Clause Category</span> <strong>${category}</strong></div>
+                        <div class="info-row"><span class="label">Risk Level</span> <strong style="color:${riskColor};">${riskLevel}</strong></div>
+                        <div class="info-row"><span class="label">Risk Score</span> <strong>${riskScore} (${riskPct.toFixed(1)}%)</strong></div>
+                        <div class="info-row"><span class="label">Compliance Status</span> <strong>${compText}</strong></div>
+                        <div class="info-row"><span class="label">Compliance Confidence</span> <strong>${(compProb * 100).toFixed(1)}%</strong></div>
+                    </div>
+                    <div>
+                        <div style="font-weight:500; margin-bottom:8px;">Risk Gauge</div>
+                        <div class="risk-gauge" style="height:20px;">
+                            <div class="fill ${riskLevel.toLowerCase()}" style="width: ${Math.min(riskPct, 100)}%; height:100%;"></div>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-secondary); margin-top:4px;">
+                            <span>Low</span>
+                            <span>Medium</span>
+                            <span>High</span>
+                        </div>
+                        <div style="margin-top:1rem; padding:0.8rem; background:var(--bg-primary); border-radius:8px; border-left: 4px solid ${riskColor};">
+                            <strong>Interpretation:</strong> 
+                            This clause is classified as <strong>${category}</strong> with a <strong>${riskLevel}</strong> risk level. 
+                            ${isCompliant ? 'It appears to be compliant with standard legal practices.' : 'It may contain non-compliant elements that require review.'}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Auto-predict on Ctrl+Enter in textarea
+        clauseInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+                predictBtn.click();
+            }
+        });
+
+        console.log('⚖️ Contract Risk AI Frontend loaded successfully.');
+        console.log(`🔗 Backend API expected at ${API_BASE}`);
+    </script>
+</body>
+</html>

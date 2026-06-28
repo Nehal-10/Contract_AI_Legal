@@ -1,0 +1,193 @@
+2026-06-28 20:50:21 | INFO     | src.utils:setup_logging:50 - Logging initialized. Log file: logs\contract_risk_20260628_205021.log
+2026-06-28 20:50:21 | INFO     | __main__:train_mode:100 - Starting training mode...
+2026-06-28 20:50:21 | INFO     | src.config:from_yaml:123 - Configuration loaded from config.yaml
+2026-06-28 20:50:21 | INFO     | src.trainer:run:60 - ============================================================
+2026-06-28 20:50:21 | INFO     | src.trainer:run:61 - Starting Contract Risk Intelligence System Training Pipeline
+2026-06-28 20:50:21 | INFO     | src.trainer:run:62 - ============================================================
+2026-06-28 20:50:21 | INFO     | src.trainer:run:65 - Step 1: Loading and preparing data...
+2026-06-28 20:50:21 | INFO     | src.data_loader:load_data:420 - Loading data from data\cuad_clauses_project.csv
+2026-06-28 20:50:21 | INFO     | src.data_loader:load_data:428 - Loaded 17688 rows and 8 columns
+2026-06-28 20:50:21 | INFO     | src.data_loader:clean_data:444 - Cleaning data...
+2026-06-28 20:50:21 | INFO     | src.data_loader:clean_data:450 - Dropped rows with missing clause_text. Remaining: 17688
+2026-06-28 20:50:21 | INFO     | src.data_loader:clean_data:454 - Dropped duplicate clauses. Remaining: 11691
+2026-06-28 20:50:21 | INFO     | src.data_loader:clean_data:470 - Removed clauses with less than 5 words. Remaining: 9397
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:493 - Cleaning compliance labels using dataset patterns...
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:505 - Compliance distribution by category:
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Affiliate License-Licensee: 100.0% compliant (71/71)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Affiliate License-Licensor: 100.0% compliant (44/44)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Agreement Date: 0.0% compliant (0/115)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Anti-Assignment: 100.0% compliant (605/605)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Audit Rights: 0.0% compliant (0/637)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Cap On Liability: 0.0% compliant (0/598)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Change Of Control: 100.0% compliant (227/227)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Competitive Restriction Exception: 0.0% compliant (0/111)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Confidentiality: 100.0% compliant (12/12)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Covenant Not To Sue: 100.0% compliant (168/168)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Document Name: 0.0% compliant (0/81)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Effective Date: 0.0% compliant (0/165)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Entire Agreement: 0.0% compliant (0/8)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Exclusivity: 0.0% compliant (0/320)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Expiration Date: 0.0% compliant (0/398)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Governing Law: 100.0% compliant (448/448)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Insurance: 0.0% compliant (0/549)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Ip Ownership Assignment: 100.0% compliant (296/296)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Irrevocable Or Perpetual License: 100.0% compliant (78/78)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Joint Ip Ownership: 100.0% compliant (108/108)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   License Grant: 0.0% compliant (0/528)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Liquidated Damages: 100.0% compliant (112/112)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Minimum Commitment: 0.0% compliant (0/403)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Miscellaneous: 0.0% compliant (0/10)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Most Favored Nation: 0.0% compliant (0/36)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   No Waiver: 0.0% compliant (0/7)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   No-Solicit Of Customers: 0.0% compliant (0/51)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   No-Solicit Of Employees: 0.0% compliant (0/82)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Non-Compete: 100.0% compliant (231/231)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Non-Disparagement: 0.0% compliant (0/62)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Non-Transferable License: 0.0% compliant (0/173)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Notice Period To Terminate Renewal: 0.0% compliant (0/74)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Parties: 0.0% compliant (0/461)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Post-Termination Services: 0.0% compliant (0/424)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Price Restrictions: 0.0% compliant (0/27)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Renewal Term: 0.0% compliant (0/130)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Revenue/Profit Sharing: 100.0% compliant (407/407)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Rofr/Rofo/Rofn: 100.0% compliant (343/343)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Severability: 0.0% compliant (0/7)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Source Code Escrow: 100.0% compliant (61/61)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Termination For Convenience: 0.0% compliant (0/228)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Third Party Beneficiary: 100.0% compliant (38/38)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Uncapped Liability: 100.0% compliant (102/102)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Unlimited/All-You-Can-Eat-License: 0.0% compliant (0/28)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Volume Restriction: 0.0% compliant (0/164)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Warranty Duration: 0.0% compliant (0/169)
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:519 - High compliance categories: ['Affiliate License-Licensee', 'Affiliate License-Licensor', 'Anti-Assignment', 'Change Of Control', 'Confidentiality', 'Covenant Not To Sue', 'Governing Law', 'Ip Ownership Assignment', 'Irrevocable Or Perpetual License', 'Joint Ip Ownership', 'Liquidated Damages', 'Non-Compete', 'Revenue/Profit Sharing', 'Rofr/Rofo/Rofn', 'Source Code Escrow', 'Third Party Beneficiary', 'Uncapped Liability']
+2026-06-28 20:50:21 | INFO     | src.data_loader:_clean_compliance_labels:520 - Low compliance categories: ['Agreement Date', 'Audit Rights', 'Cap On Liability', 'Competitive Restriction Exception', 'Document Name', 'Effective Date', 'Entire Agreement', 'Exclusivity', 'Expiration Date', 'Insurance', 'License Grant', 'Minimum Commitment', 'Miscellaneous', 'Most Favored Nation', 'No Waiver', 'No-Solicit Of Customers', 'No-Solicit Of Employees', 'Non-Disparagement', 'Non-Transferable License', 'Notice Period To Terminate Renewal', 'Parties', 'Post-Termination Services', 'Price Restrictions', 'Renewal Term', 'Severability', 'Termination For Convenience', 'Unlimited/All-You-Can-Eat-License', 'Volume Restriction', 'Warranty Duration']
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:535 - Compliance by risk bucket: {'Low': 0.14873837981407703, 'Medium': 0.204638124362895, 'High': 0.8533116619260463}
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:560 - Compliance rate after cleaning: 35.7%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:563 - Compliance rates after cleaning:
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Affiliate License-Licensee: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Affiliate License-Licensor: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Agreement Date: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Anti-Assignment: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Audit Rights: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Cap On Liability: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Change Of Control: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Competitive Restriction Exception: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Confidentiality: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Covenant Not To Sue: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Document Name: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Effective Date: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Entire Agreement: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Exclusivity: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Expiration Date: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Governing Law: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Insurance: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Ip Ownership Assignment: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Irrevocable Or Perpetual License: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Joint Ip Ownership: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   License Grant: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Liquidated Damages: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Minimum Commitment: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Miscellaneous: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Most Favored Nation: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   No Waiver: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   No-Solicit Of Customers: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   No-Solicit Of Employees: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Non-Compete: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Non-Disparagement: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Non-Transferable License: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Notice Period To Terminate Renewal: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Parties: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Post-Termination Services: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Price Restrictions: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Renewal Term: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Revenue/Profit Sharing: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Rofr/Rofo/Rofn: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Severability: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Source Code Escrow: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Termination For Convenience: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Third Party Beneficiary: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Uncapped Liability: 100.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Unlimited/All-You-Can-Eat-License: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Volume Restriction: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Warranty Duration: 0.0%
+2026-06-28 20:50:22 | INFO     | src.data_loader:clean_data:478 - Data cleaning complete. Final dataset size: 9397
+2026-06-28 20:50:22 | INFO     | src.data_loader:perform_eda:579 - Performing Exploratory Data Analysis...
+2026-06-28 20:50:22 | INFO     | src.data_loader:perform_eda:586 - Category distribution:
+clause_category
+Audit Rights                          637
+Anti-Assignment                       605
+Cap On Liability                      598
+Insurance                             549
+License Grant                         528
+Parties                               461
+Governing Law                         448
+Post-Termination Services             424
+Revenue/Profit Sharing                407
+Minimum Commitment                    403
+Expiration Date                       398
+Rofr/Rofo/Rofn                        343
+Exclusivity                           320
+Ip Ownership Assignment               296
+Non-Compete                           231
+Termination For Convenience           228
+Change Of Control                     227
+Non-Transferable License              173
+Warranty Duration                     169
+Covenant Not To Sue                   168
+Effective Date                        165
+Volume Restriction                    164
+Renewal Term                          130
+Agreement Date                        115
+Liquidated Damages                    112
+Competitive Restriction Exception     111
+Joint Ip Ownership                    108
+Uncapped Liability                    102
+No-Solicit Of Employees                82
+Document Name                          81
+Irrevocable Or Perpetual License       78
+Notice Period To Terminate Renewal     74
+Affiliate License-Licensee             71
+Non-Disparagement                      62
+Source Code Escrow                     61
+No-Solicit Of Customers                51
+Affiliate License-Licensor             44
+Third Party Beneficiary                38
+Most Favored Nation                    36
+Unlimited/All-You-Can-Eat-License      28
+Price Restrictions                     27
+Confidentiality                        12
+Miscellaneous                          10
+Entire Agreement                        8
+No Waiver                               7
+Severability                            7
+Name: count, dtype: int64
+2026-06-28 20:50:22 | INFO     | src.data_loader:perform_eda:591 - Risk level distribution:
+risk_level
+Medium    3935
+Low       3649
+High      1813
+Name: count, dtype: int64
+2026-06-28 20:50:22 | INFO     | src.data_loader:perform_eda:596 - Compliance distribution:
+compliance_flag
+0    6046
+1    3351
+Name: count, dtype: int64
+2026-06-28 20:50:23 | INFO     | src.data_loader:perform_eda:607 - Risk score statistics:
+{'mean': 0.48531233372352883, 'median': 0.51, 'std': 0.2560011541413911, 'min': 0.07, 'max': 0.98}
+2026-06-28 20:50:23 | INFO     | src.data_loader:perform_eda:618 - Clause length statistics:
+{'mean_words': 50.03596892625306, 'median_words': 39.0, 'std_words': 42.32545838714926, 'min_words': 5, 'max_words': 479}
+2026-06-28 20:50:23 | INFO     | src.data_loader:perform_eda:621 - EDA complete
+2026-06-28 20:50:23 | INFO     | src.data_loader:create_label_encoders:635 - Creating label encoders...
+2026-06-28 20:50:23 | INFO     | src.data_loader:create_label_encoders:645 - Created encoder for clause_category with 46 classes
+2026-06-28 20:50:23 | INFO     | src.data_loader:create_label_encoders:645 - Created encoder for risk_level with 3 classes
+2026-06-28 20:50:23 | INFO     | src.data_loader:prepare_data_for_training:663 - Preparing data for training...
+2026-06-28 20:50:23 | INFO     | src.data_loader:prepare_data_for_training:684 - Training set size: 7517
+2026-06-28 20:50:23 | INFO     | src.data_loader:prepare_data_for_training:685 - Test set size: 1880
+2026-06-28 20:50:23 | INFO     | src.data_loader:prepare_data_for_training:686 - Compliance distribution in training: 35.7%
+2026-06-28 20:50:23 | INFO     | src.data_loader:prepare_data_for_training:687 - Compliance distribution in test: 35.6%
+2026-06-28 20:50:23 | INFO     | src.trainer:run:67 - Data loaded: 9397 samples
+2026-06-28 20:50:23 | INFO     | src.trainer:run:70 - Step 2: Generating LegalBERT embeddings...
+2026-06-28 20:50:23 | INFO     | src.embedding_generator:initialize:61 - Initializing LegalBERT model: nlpaueb/legal-bert-base-uncased
+2026-06-28 20:50:23 | INFO     | src.embedding_generator:initialize:62 - Using device: cpu
+2026-06-28 20:50:26 | INFO     | src.embedding_generator:initialize:74 - LegalBERT model initialized successfully
+2026-06-28 20:50:26 | INFO     | src.embedding_generator:generate_embeddings:117 - Generating embeddings for 7517 texts

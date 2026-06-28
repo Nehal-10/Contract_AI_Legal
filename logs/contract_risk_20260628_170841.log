@@ -1,0 +1,29 @@
+2026-06-28 17:08:41 | INFO     | src.utils:setup_logging:50 - Logging initialized. Log file: logs\contract_risk_20260628_170841.log
+2026-06-28 17:08:41 | INFO     | __main__:predict_mode:180 - Starting clause prediction mode...
+2026-06-28 17:08:41 | INFO     | src.config:from_yaml:123 - Configuration loaded from config.yaml
+2026-06-28 17:08:41 | ERROR    | src.config:from_yaml:126 - Failed to load config from config.yaml: TrainingConfig.__init__() got an unexpected keyword argument 'clause_classifier'
+2026-06-28 17:08:41 | INFO     | src.predictor:_load_models:50 - Loading models from models
+2026-06-28 17:08:41 | INFO     | src.models:load_models:407 - Loaded clause_category_encoder from models\clause_category_encoder.pkl
+2026-06-28 17:08:42 | INFO     | src.models:load_models:407 - Loaded clause_classifier from models\clause_classifier.pkl
+2026-06-28 17:08:43 | INFO     | src.models:load_models:407 - Loaded compliance_classifier from models\compliance_classifier.pkl
+2026-06-28 17:08:43 | INFO     | src.models:load_models:407 - Loaded risk_level_encoder from models\risk_level_encoder.pkl
+2026-06-28 17:08:43 | INFO     | src.models:load_models:407 - Loaded risk_regressor from models\risk_regressor.pkl
+2026-06-28 17:08:43 | INFO     | src.models:load_models:413 - Loaded scaler from models\scaler.pkl
+2026-06-28 17:08:43 | INFO     | src.predictor:_load_models:77 - Models loaded successfully
+2026-06-28 17:08:43 | INFO     | __main__:predict_mode:197 - Analyzing clause: Either party may terminate this Agreement at any time without liability....
+2026-06-28 17:08:43 | INFO     | src.embedding_generator:initialize:61 - Initializing LegalBERT model: nlpaueb/legal-bert-base-uncased
+2026-06-28 17:08:43 | INFO     | src.embedding_generator:initialize:62 - Using device: cpu
+2026-06-28 17:08:47 | INFO     | src.embedding_generator:initialize:74 - LegalBERT model initialized successfully
+2026-06-28 17:08:47 | INFO     | src.embedding_generator:generate_embeddings:117 - Generating embeddings for 1 texts
+2026-06-28 17:08:47 | INFO     | src.embedding_generator:generate_embeddings:152 - Generated embeddings with shape: (1, 768)
+2026-06-28 17:08:47 | INFO     | __main__:predict_mode:201 - 
+============================================================
+2026-06-28 17:08:47 | INFO     | __main__:predict_mode:202 - CLAUSE ANALYSIS RESULTS
+2026-06-28 17:08:47 | INFO     | __main__:predict_mode:203 - ============================================================
+2026-06-28 17:08:47 | INFO     | __main__:predict_mode:209 - Category: Termination For Convenience (ID: 13)
+2026-06-28 17:08:47 | INFO     | __main__:predict_mode:212 - Risk Score: 0.849
+2026-06-28 17:08:47 | INFO     | __main__:predict_mode:213 - Risk Percentage: 84.9%
+2026-06-28 17:08:47 | INFO     | __main__:predict_mode:217 - Risk Level: High
+2026-06-28 17:08:47 | INFO     | __main__:predict_mode:221 - Compliance Status: Compliant
+2026-06-28 17:08:47 | INFO     | __main__:predict_mode:223 - Compliance Probability: 0.970
+2026-06-28 17:08:47 | INFO     | __main__:predict_mode:225 - ============================================================

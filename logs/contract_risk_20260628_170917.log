@@ -1,0 +1,4 @@
+2026-06-28 17:09:17 | INFO     | src.utils:setup_logging:50 - Logging initialized. Log file: logs\contract_risk_20260628_170917.log
+2026-06-28 17:09:17 | INFO     | __main__:serve_mode:235 - Starting API server...
+2026-06-28 17:09:17 | INFO     | src.config:from_yaml:123 - Configuration loaded from config.yaml
+2026-06-28 17:09:17 | ERROR    | src.config:from_yaml:126 - Failed to load config from config.yaml: TrainingConfig.__init__() got an unexpected keyword argument 'clause_classifier'

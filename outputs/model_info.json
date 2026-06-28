@@ -1,0 +1,31 @@
+{
+  "models": {
+    "clause_classifier": {
+      "type": "XGBClassifier",
+      "is_fitted": true,
+      "has_feature_importance": true
+    },
+    "risk_regressor": {
+      "type": "XGBRegressor",
+      "is_fitted": true,
+      "has_feature_importance": true
+    },
+    "compliance_classifier": {
+      "type": "XGBClassifier",
+      "is_fitted": true,
+      "has_feature_importance": true
+    }
+  },
+  "scaler_fitted": true,
+  "training_history": {
+    "clause_classifier": {
+      "type": "xgboost"
+    },
+    "risk_regressor": {
+      "type": "xgboost"
+    },
+    "compliance_classifier": {
+      "type": "xgboost"
+    }
+  }
+}

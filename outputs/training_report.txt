@@ -1,0 +1,45 @@
+CONTRACT RISK INTELLIGENCE SYSTEM - TRAINING REPORT
+============================================================
+
+DATA SUMMARY:
+  Total samples: 9413
+  Training samples: 7530
+  Test samples: 1883
+  Embedding dimension: 768
+
+MODEL PERFORMANCE:
+  clause_classification:
+    accuracy: 0.7637
+    precision: 0.7619
+    recall: 0.7637
+    f1: 0.7537
+    accuracy: 0.7637
+  risk_regression:
+    mae: 0.1052
+    rmse: 0.1418
+    r2: 0.6957
+    mape: 36.6499
+    error_mean: 0.0002
+    error_std: 0.1418
+    error_max: 0.6307
+    error_25: 0.0309
+    error_75: 0.1532
+  risk_level_classification:
+    accuracy: 0.6606
+    precision: 0.7218
+    recall: 0.6606
+    f1: 0.6629
+    accuracy: 0.6606
+  compliance_classification:
+    accuracy: 0.8858
+    precision: 0.8852
+    recall: 0.8858
+    f1: 0.8846
+    precision_binary: 0.8713
+    recall_binary: 0.7973
+    f1_binary: 0.8327
+    accuracy: 0.8858
+  clause_classifier_cv:
+  risk_regressor_cv:
+
+============================================================

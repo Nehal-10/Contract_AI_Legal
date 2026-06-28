@@ -1,0 +1,36 @@
+2026-06-28 17:44:06 | INFO     | src.utils:setup_logging:50 - Logging initialized. Log file: logs\contract_risk_20260628_174406.log
+2026-06-28 17:44:06 | INFO     | __main__:serve_mode:235 - Starting API server...
+2026-06-28 17:44:06 | INFO     | src.config:from_yaml:123 - Configuration loaded from config.yaml
+2026-06-28 17:44:06 | INFO     | src.utils:setup_logging:50 - Logging initialized. Log file: logs\contract_risk_20260628_174406.log
+2026-06-28 17:44:06 | INFO     | src.predictor:_load_models:51 - Loading models from models
+2026-06-28 17:44:06 | INFO     | src.models:load_models:407 - Loaded clause_category_encoder from models\clause_category_encoder.pkl
+2026-06-28 17:44:06 | INFO     | src.models:load_models:407 - Loaded clause_classifier from models\clause_classifier.pkl
+2026-06-28 17:44:06 | INFO     | src.models:load_models:407 - Loaded compliance_classifier from models\compliance_classifier.pkl
+2026-06-28 17:44:06 | INFO     | src.models:load_models:407 - Loaded risk_level_encoder from models\risk_level_encoder.pkl
+2026-06-28 17:44:06 | INFO     | src.models:load_models:407 - Loaded risk_regressor from models\risk_regressor.pkl
+2026-06-28 17:44:06 | INFO     | src.models:load_models:413 - Loaded scaler from models\scaler.pkl
+2026-06-28 17:44:06 | INFO     | src.predictor:_load_models:78 - Models loaded successfully
+2026-06-28 17:44:06 | INFO     | api.app:<module>:56 - Frontend mounted at /frontend from D:\Nehal\Projects\AIML Project\claude\Folder1\contract_risk_ai\frontend
+2026-06-28 17:44:06 | INFO     | src.predictor:_load_models:51 - Loading models from models
+2026-06-28 17:44:06 | INFO     | src.models:load_models:407 - Loaded clause_category_encoder from models\clause_category_encoder.pkl
+2026-06-28 17:44:07 | INFO     | src.models:load_models:407 - Loaded clause_classifier from models\clause_classifier.pkl
+2026-06-28 17:44:07 | INFO     | src.models:load_models:407 - Loaded compliance_classifier from models\compliance_classifier.pkl
+2026-06-28 17:44:07 | INFO     | src.models:load_models:407 - Loaded risk_level_encoder from models\risk_level_encoder.pkl
+2026-06-28 17:44:07 | INFO     | src.models:load_models:407 - Loaded risk_regressor from models\risk_regressor.pkl
+2026-06-28 17:44:07 | INFO     | src.models:load_models:413 - Loaded scaler from models\scaler.pkl
+2026-06-28 17:44:07 | INFO     | src.predictor:_load_models:78 - Models loaded successfully
+2026-06-28 17:44:07 | INFO     | __main__:serve_mode:254 - Starting server on http://0.0.0.0:8000
+2026-06-28 17:44:07 | INFO     | __main__:serve_mode:255 - Docs available at http://0.0.0.0:8000/docs
+2026-06-28 17:44:16 | INFO     | src.predictor:predict_contract:287 - Analyzing contract...
+2026-06-28 17:44:16 | INFO     | src.pdf_processor:extract_text:42 - Extracting text from PDF...
+2026-06-28 17:44:17 | INFO     | src.pdf_processor:extract_text:71 - Extracted 9519 characters from PDF
+2026-06-28 17:44:17 | INFO     | src.pdf_processor:segment_clauses:111 - Segmenting text into clauses...
+2026-06-28 17:44:17 | INFO     | src.pdf_processor:segment_clauses:140 - Found 17 clauses using numbered section strategy
+2026-06-28 17:44:17 | INFO     | src.pdf_processor:process_pdf:249 - Processed PDF into 17 clauses
+2026-06-28 17:44:17 | INFO     | src.embedding_generator:initialize:61 - Initializing LegalBERT model: nlpaueb/legal-bert-base-uncased
+2026-06-28 17:44:17 | INFO     | src.embedding_generator:initialize:62 - Using device: cpu
+2026-06-28 17:44:22 | INFO     | src.embedding_generator:initialize:74 - LegalBERT model initialized successfully
+2026-06-28 17:44:22 | INFO     | src.embedding_generator:generate_embeddings:117 - Generating embeddings for 17 texts
+2026-06-28 17:44:31 | INFO     | src.embedding_generator:generate_embeddings:152 - Generated embeddings with shape: (17, 768)
+2026-06-28 17:44:31 | INFO     | src.predictor:_aggregate_results:450 - Contract analysis complete: 17 clauses, Risk Level: Medium, Compliance Rate: 35.3%
+2026-06-28 17:44:31 | ERROR    | api.app:general_exception_handler:411 - Unhandled exception: Unable to serialize unknown type: 81.58823529411765

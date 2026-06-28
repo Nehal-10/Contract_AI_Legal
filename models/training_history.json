@@ -1,0 +1,1 @@
+{"clause_classifier": {"type": "xgboost"}, "risk_regressor": {"type": "xgboost"}, "compliance_classifier": {"type": "xgboost"}}

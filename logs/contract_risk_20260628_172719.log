@@ -1,0 +1,20 @@
+2026-06-28 17:27:19 | INFO     | src.utils:setup_logging:50 - Logging initialized. Log file: logs\contract_risk_20260628_172719.log
+2026-06-28 17:27:19 | INFO     | src.predictor:_load_models:50 - Loading models from models
+2026-06-28 17:27:19 | INFO     | src.models:load_models:407 - Loaded clause_category_encoder from models\clause_category_encoder.pkl
+2026-06-28 17:27:19 | INFO     | src.models:load_models:407 - Loaded clause_classifier from models\clause_classifier.pkl
+2026-06-28 17:27:19 | INFO     | src.models:load_models:407 - Loaded compliance_classifier from models\compliance_classifier.pkl
+2026-06-28 17:27:19 | INFO     | src.models:load_models:407 - Loaded risk_level_encoder from models\risk_level_encoder.pkl
+2026-06-28 17:27:19 | INFO     | src.models:load_models:407 - Loaded risk_regressor from models\risk_regressor.pkl
+2026-06-28 17:27:19 | INFO     | src.models:load_models:413 - Loaded scaler from models\scaler.pkl
+2026-06-28 17:27:19 | INFO     | src.predictor:_load_models:77 - Models loaded successfully
+2026-06-28 17:27:19 | INFO     | api.app:<module>:56 - Frontend mounted at /frontend from D:\Nehal\Projects\AIML Project\claude\Folder1\contract_risk_ai\frontend
+2026-06-28 17:27:19 | INFO     | src.predictor:_load_models:50 - Loading models from models
+2026-06-28 17:27:19 | INFO     | src.models:load_models:407 - Loaded clause_category_encoder from models\clause_category_encoder.pkl
+2026-06-28 17:27:19 | INFO     | src.models:load_models:407 - Loaded clause_classifier from models\clause_classifier.pkl
+2026-06-28 17:27:19 | INFO     | src.models:load_models:407 - Loaded compliance_classifier from models\compliance_classifier.pkl
+2026-06-28 17:27:19 | INFO     | src.models:load_models:407 - Loaded risk_level_encoder from models\risk_level_encoder.pkl
+2026-06-28 17:27:19 | INFO     | src.models:load_models:407 - Loaded risk_regressor from models\risk_regressor.pkl
+2026-06-28 17:27:19 | INFO     | src.models:load_models:413 - Loaded scaler from models\scaler.pkl
+2026-06-28 17:27:19 | INFO     | src.predictor:_load_models:77 - Models loaded successfully
+2026-06-28 17:27:19 | INFO     | __main__:serve_mode:254 - Starting server on http://0.0.0.0:8000
+2026-06-28 17:27:19 | INFO     | __main__:serve_mode:255 - Docs available at http://0.0.0.0:8000/docs

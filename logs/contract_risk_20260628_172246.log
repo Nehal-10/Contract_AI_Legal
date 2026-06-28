@@ -1,0 +1,39 @@
+2026-06-28 17:22:46 | INFO     | src.utils:setup_logging:50 - Logging initialized. Log file: logs\contract_risk_20260628_172246.log
+2026-06-28 17:22:46 | INFO     | src.predictor:_load_models:50 - Loading models from models
+2026-06-28 17:22:47 | INFO     | src.models:load_models:407 - Loaded clause_category_encoder from models\clause_category_encoder.pkl
+2026-06-28 17:22:47 | INFO     | src.models:load_models:407 - Loaded clause_classifier from models\clause_classifier.pkl
+2026-06-28 17:22:47 | INFO     | src.models:load_models:407 - Loaded compliance_classifier from models\compliance_classifier.pkl
+2026-06-28 17:22:47 | INFO     | src.models:load_models:407 - Loaded risk_level_encoder from models\risk_level_encoder.pkl
+2026-06-28 17:22:47 | INFO     | src.models:load_models:407 - Loaded risk_regressor from models\risk_regressor.pkl
+2026-06-28 17:22:47 | INFO     | src.models:load_models:413 - Loaded scaler from models\scaler.pkl
+2026-06-28 17:22:47 | INFO     | src.predictor:_load_models:77 - Models loaded successfully
+2026-06-28 17:22:47 | INFO     | api.app:<module>:56 - Frontend mounted at /frontend from D:\Nehal\Projects\AIML Project\claude\Folder1\contract_risk_ai\frontend
+2026-06-28 17:22:47 | INFO     | src.predictor:_load_models:50 - Loading models from models
+2026-06-28 17:22:47 | INFO     | src.models:load_models:407 - Loaded clause_category_encoder from models\clause_category_encoder.pkl
+2026-06-28 17:22:47 | INFO     | src.models:load_models:407 - Loaded clause_classifier from models\clause_classifier.pkl
+2026-06-28 17:22:47 | INFO     | src.models:load_models:407 - Loaded compliance_classifier from models\compliance_classifier.pkl
+2026-06-28 17:22:47 | INFO     | src.models:load_models:407 - Loaded risk_level_encoder from models\risk_level_encoder.pkl
+2026-06-28 17:22:47 | INFO     | src.models:load_models:407 - Loaded risk_regressor from models\risk_regressor.pkl
+2026-06-28 17:22:47 | INFO     | src.models:load_models:413 - Loaded scaler from models\scaler.pkl
+2026-06-28 17:22:47 | INFO     | src.predictor:_load_models:77 - Models loaded successfully
+2026-06-28 17:22:47 | INFO     | __main__:serve_mode:254 - Starting server on http://0.0.0.0:8000
+2026-06-28 17:22:47 | INFO     | __main__:serve_mode:255 - Docs available at http://0.0.0.0:8000/docs
+2026-06-28 17:23:57 | INFO     | src.embedding_generator:initialize:61 - Initializing LegalBERT model: nlpaueb/legal-bert-base-uncased
+2026-06-28 17:23:57 | INFO     | src.embedding_generator:initialize:62 - Using device: cpu
+2026-06-28 17:24:03 | INFO     | src.embedding_generator:initialize:74 - LegalBERT model initialized successfully
+2026-06-28 17:24:03 | INFO     | src.embedding_generator:generate_embeddings:117 - Generating embeddings for 1 texts
+2026-06-28 17:24:03 | INFO     | src.embedding_generator:generate_embeddings:152 - Generated embeddings with shape: (1, 768)
+2026-06-28 17:24:48 | INFO     | src.predictor:predict_contract:259 - Analyzing contract...
+2026-06-28 17:24:48 | INFO     | src.pdf_processor:extract_text:42 - Extracting text from PDF...
+2026-06-28 17:24:48 | INFO     | src.pdf_processor:extract_text:71 - Extracted 0 characters from PDF
+2026-06-28 17:24:48 | INFO     | src.pdf_processor:segment_clauses:111 - Segmenting text into clauses...
+2026-06-28 17:24:48 | WARNING  | src.pdf_processor:segment_clauses:114 - Empty text provided for segmentation
+2026-06-28 17:24:48 | INFO     | src.pdf_processor:process_pdf:249 - Processed PDF into 0 clauses
+2026-06-28 17:24:48 | WARNING  | src.predictor:predict_contract:265 - No clauses extracted from PDF
+2026-06-28 17:25:02 | INFO     | src.predictor:predict_contract:259 - Analyzing contract...
+2026-06-28 17:25:02 | INFO     | src.pdf_processor:extract_text:42 - Extracting text from PDF...
+2026-06-28 17:25:04 | INFO     | src.pdf_processor:extract_text:71 - Extracted 7551 characters from PDF
+2026-06-28 17:25:04 | INFO     | src.pdf_processor:segment_clauses:111 - Segmenting text into clauses...
+2026-06-28 17:25:04 | INFO     | src.pdf_processor:segment_clauses:140 - Found 18 clauses using numbered section strategy
+2026-06-28 17:25:04 | INFO     | src.pdf_processor:process_pdf:249 - Processed PDF into 18 clauses
+2026-06-28 17:25:04 | ERROR    | api.app:analyze_contract:265 - Error in analyze_contract: 'str' object has no attribute 'get'

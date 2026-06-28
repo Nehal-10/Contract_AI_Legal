@@ -1,0 +1,154 @@
+2026-06-28 18:30:29 | INFO     | src.utils:setup_logging:50 - Logging initialized. Log file: logs\contract_risk_20260628_183029.log
+2026-06-28 18:30:29 | INFO     | __main__:train_mode:100 - Starting training mode...
+2026-06-28 18:30:29 | INFO     | src.config:from_yaml:123 - Configuration loaded from config.yaml
+2026-06-28 18:30:29 | INFO     | src.trainer:run:60 - ============================================================
+2026-06-28 18:30:29 | INFO     | src.trainer:run:61 - Starting Contract Risk Intelligence System Training Pipeline
+2026-06-28 18:30:29 | INFO     | src.trainer:run:62 - ============================================================
+2026-06-28 18:30:29 | INFO     | src.trainer:run:65 - Step 1: Loading and preparing data...
+2026-06-28 18:30:29 | INFO     | src.data_loader:load_data:420 - Loading data from data\cuad_clauses_project.csv
+2026-06-28 18:30:29 | INFO     | src.data_loader:load_data:428 - Loaded 4727 rows and 8 columns
+2026-06-28 18:30:29 | INFO     | src.data_loader:clean_data:444 - Cleaning data...
+2026-06-28 18:30:29 | INFO     | src.data_loader:clean_data:450 - Dropped rows with missing clause_text. Remaining: 4727
+2026-06-28 18:30:29 | INFO     | src.data_loader:clean_data:454 - Dropped duplicate clauses. Remaining: 4505
+2026-06-28 18:30:29 | INFO     | src.data_loader:clean_data:470 - Removed clauses with less than 5 words. Remaining: 4481
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:493 - Cleaning compliance labels using dataset patterns...
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:505 - Compliance distribution by category:
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Anti-Assignment: 0.0% compliant (0/602)
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Audit Rights: 0.0% compliant (0/640)
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Change Of Control: 100.0% compliant (243/243)
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Exclusivity: 100.0% compliant (400/400)
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Governing Law: 0.0% compliant (0/448)
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Insurance: 0.0% compliant (0/552)
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Minimum Commitment: 100.0% compliant (405/405)
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Most Favored Nation: 100.0% compliant (37/37)
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Non-Compete: 100.0% compliant (255/255)
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Notice Period To Terminate Renewal: 0.0% compliant (0/24)
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Price Restrictions: 0.0% compliant (0/24)
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Renewal Term: 0.0% compliant (0/205)
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Revenue/Profit Sharing: 0.0% compliant (0/412)
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:507 -   Termination For Convenience: 100.0% compliant (234/234)
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:519 - High compliance categories: ['Change Of Control', 'Exclusivity', 'Minimum Commitment', 'Most Favored Nation', 'Non-Compete', 'Termination For Convenience']
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:520 - Low compliance categories: ['Anti-Assignment', 'Audit Rights', 'Governing Law', 'Insurance', 'Notice Period To Terminate Renewal', 'Price Restrictions', 'Renewal Term', 'Revenue/Profit Sharing']
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:535 - Compliance by risk bucket: {'Low': 0.0, 'Medium': 0.0, 'High': 0.8155440414507772}
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:560 - Compliance rate after cleaning: 35.1%
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:563 - Compliance rates after cleaning:
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Anti-Assignment: 0.0%
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Audit Rights: 0.0%
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Change Of Control: 100.0%
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Exclusivity: 100.0%
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Governing Law: 0.0%
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Insurance: 0.0%
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Minimum Commitment: 100.0%
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Most Favored Nation: 100.0%
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Non-Compete: 100.0%
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Notice Period To Terminate Renewal: 0.0%
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Price Restrictions: 0.0%
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Renewal Term: 0.0%
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Revenue/Profit Sharing: 0.0%
+2026-06-28 18:30:29 | INFO     | src.data_loader:_clean_compliance_labels:565 -   Termination For Convenience: 100.0%
+2026-06-28 18:30:29 | INFO     | src.data_loader:clean_data:478 - Data cleaning complete. Final dataset size: 4481
+2026-06-28 18:30:29 | INFO     | src.data_loader:perform_eda:579 - Performing Exploratory Data Analysis...
+2026-06-28 18:30:29 | INFO     | src.data_loader:perform_eda:586 - Category distribution:
+clause_category
+Audit Rights                          640
+Anti-Assignment                       602
+Insurance                             552
+Governing Law                         448
+Revenue/Profit Sharing                412
+Minimum Commitment                    405
+Exclusivity                           400
+Non-Compete                           255
+Change Of Control                     243
+Termination For Convenience           234
+Renewal Term                          205
+Most Favored Nation                    37
+Price Restrictions                     24
+Notice Period To Terminate Renewal     24
+Name: count, dtype: int64
+2026-06-28 18:30:29 | INFO     | src.data_loader:perform_eda:591 - Risk level distribution:
+risk_level
+Medium    2459
+High      1574
+Low        448
+Name: count, dtype: int64
+2026-06-28 18:30:29 | INFO     | src.data_loader:perform_eda:596 - Compliance distribution:
+compliance_flag
+0    2907
+1    1574
+Name: count, dtype: int64
+2026-06-28 18:30:29 | INFO     | src.data_loader:perform_eda:607 - Risk score statistics:
+{'mean': 0.6484713233653203, 'median': 0.63, 'std': 0.218357928520025, 'min': 0.1, 'max': 0.98}
+2026-06-28 18:30:29 | INFO     | src.data_loader:perform_eda:618 - Clause length statistics:
+{'mean_words': 49.81588931042178, 'median_words': 39.0, 'std_words': 40.338260342675405, 'min_words': 5, 'max_words': 479}
+2026-06-28 18:30:29 | INFO     | src.data_loader:perform_eda:621 - EDA complete
+2026-06-28 18:30:29 | INFO     | src.data_loader:create_label_encoders:635 - Creating label encoders...
+2026-06-28 18:30:29 | INFO     | src.data_loader:create_label_encoders:645 - Created encoder for clause_category with 14 classes
+2026-06-28 18:30:29 | INFO     | src.data_loader:create_label_encoders:645 - Created encoder for risk_level with 3 classes
+2026-06-28 18:30:29 | INFO     | src.data_loader:prepare_data_for_training:663 - Preparing data for training...
+2026-06-28 18:30:29 | INFO     | src.data_loader:prepare_data_for_training:684 - Training set size: 3584
+2026-06-28 18:30:29 | INFO     | src.data_loader:prepare_data_for_training:685 - Test set size: 897
+2026-06-28 18:30:29 | INFO     | src.data_loader:prepare_data_for_training:686 - Compliance distribution in training: 35.1%
+2026-06-28 18:30:29 | INFO     | src.data_loader:prepare_data_for_training:687 - Compliance distribution in test: 35.1%
+2026-06-28 18:30:29 | INFO     | src.trainer:run:67 - Data loaded: 4481 samples
+2026-06-28 18:30:29 | INFO     | src.trainer:run:70 - Step 2: Generating LegalBERT embeddings...
+2026-06-28 18:30:29 | INFO     | src.embedding_generator:initialize:61 - Initializing LegalBERT model: nlpaueb/legal-bert-base-uncased
+2026-06-28 18:30:29 | INFO     | src.embedding_generator:initialize:62 - Using device: cpu
+2026-06-28 18:30:35 | INFO     | src.embedding_generator:initialize:74 - LegalBERT model initialized successfully
+2026-06-28 18:30:35 | INFO     | src.embedding_generator:generate_embeddings:117 - Generating embeddings for 3584 texts
+2026-06-28 18:39:33 | INFO     | src.embedding_generator:generate_embeddings:152 - Generated embeddings with shape: (3584, 768)
+2026-06-28 18:39:33 | INFO     | src.embedding_generator:generate_embeddings:117 - Generating embeddings for 897 texts
+2026-06-28 18:41:55 | INFO     | src.embedding_generator:generate_embeddings:152 - Generated embeddings with shape: (897, 768)
+2026-06-28 18:41:55 | INFO     | src.trainer:run:81 - Embeddings generated: Train shape (3584, 768), Test shape (897, 768)
+2026-06-28 18:41:55 | INFO     | src.trainer:run:84 - Step 3: Training ML models...
+2026-06-28 18:41:55 | INFO     | src.models:train_models:256 - Training all models...
+2026-06-28 18:41:55 | INFO     | src.models:train_models:280 - Training clause classifier...
+2026-06-28 18:41:55 | INFO     | src.models:create_clause_classifier:38 - Creating clause classifier of type: xgboost
+2026-06-28 18:42:54 | INFO     | src.models:train_models:290 - Training risk regressor...
+2026-06-28 18:42:54 | INFO     | src.models:create_risk_regressor:104 - Creating risk regressor of type: xgboost
+2026-06-28 18:43:00 | INFO     | src.models:train_models:300 - Training compliance classifier...
+2026-06-28 18:43:00 | INFO     | src.models:create_compliance_classifier:164 - Creating compliance classifier of type: xgboost
+2026-06-28 18:43:05 | INFO     | src.models:train_models:309 - All models trained successfully
+2026-06-28 18:43:05 | INFO     | src.trainer:run:100 - Step 4: Evaluating models...
+2026-06-28 18:43:05 | INFO     | src.evaluator:evaluate_classification:57 - Evaluating Clause Classification...
+2026-06-28 18:43:05 | INFO     | src.evaluator:evaluate_classification:104 - Clause Classification - Accuracy: 0.8640, F1: 0.8585
+2026-06-28 18:43:05 | INFO     | src.evaluator:evaluate_regression:125 - Evaluating Risk Score Regression...
+2026-06-28 18:43:05 | INFO     | src.evaluator:evaluate_regression:146 - Risk Score Regression - R²: 0.7332, RMSE: 0.1136
+2026-06-28 18:43:05 | INFO     | src.evaluator:evaluate_classification:57 - Evaluating Risk Level Classification...
+2026-06-28 18:43:05 | INFO     | src.evaluator:evaluate_classification:104 - Risk Level Classification - Accuracy: 0.8328, F1: 0.8345
+2026-06-28 18:43:05 | INFO     | src.evaluator:evaluate_classification:57 - Evaluating Compliance Classification...
+2026-06-28 18:43:05 | INFO     | src.evaluator:evaluate_classification:104 - Compliance Classification - Accuracy: 0.9041, F1: 0.9042
+2026-06-28 18:43:05 | INFO     | src.trainer:evaluate_models:193 - Performing cross-validation on best models...
+2026-06-28 18:43:05 | INFO     | src.evaluator:cross_validate_model:173 - Performing 5-fold cross-validation on XGBClassifier...
+2026-06-28 18:43:05 | ERROR    | src.evaluator:cross_validate_model:203 - Cross-validation failed: Found input variables with inconsistent numbers of samples: [3584, 897]
+2026-06-28 18:43:05 | INFO     | src.evaluator:cross_validate_model:173 - Performing 5-fold cross-validation on XGBRegressor...
+2026-06-28 18:43:05 | ERROR    | src.evaluator:cross_validate_model:203 - Cross-validation failed: Found input variables with inconsistent numbers of samples: [3584, 897]
+2026-06-28 18:43:05 | INFO     | src.trainer:run:105 - Step 5: Saving models...
+2026-06-28 18:43:05 | INFO     | src.models:save_models:374 - Saved clause_classifier to models\clause_classifier.pkl
+2026-06-28 18:43:05 | INFO     | src.models:save_models:374 - Saved risk_regressor to models\risk_regressor.pkl
+2026-06-28 18:43:05 | INFO     | src.models:save_models:374 - Saved compliance_classifier to models\compliance_classifier.pkl
+2026-06-28 18:43:05 | INFO     | src.models:save_models:379 - Saved scaler to models\scaler.pkl
+2026-06-28 18:43:05 | INFO     | src.trainer:run:112 - Saved clause_category_encoder to models\clause_category_encoder.pkl
+2026-06-28 18:43:05 | INFO     | src.trainer:run:112 - Saved risk_level_encoder to models\risk_level_encoder.pkl
+2026-06-28 18:43:05 | INFO     | src.trainer:run:125 - Training pipeline completed in 756.09 seconds
+2026-06-28 18:43:05 | INFO     | src.trainer:run:126 - ============================================================
+2026-06-28 18:43:05 | INFO     | src.trainer:print_summary:225 - 
+============================================================
+2026-06-28 18:43:05 | INFO     | src.trainer:print_summary:226 - TRAINING SUMMARY
+2026-06-28 18:43:05 | INFO     | src.trainer:print_summary:227 - ============================================================
+2026-06-28 18:43:05 | INFO     | src.trainer:print_summary:230 - Total samples: 4481
+2026-06-28 18:43:05 | INFO     | src.trainer:print_summary:231 - Training samples: 3584
+2026-06-28 18:43:05 | INFO     | src.trainer:print_summary:232 - Test samples: 897
+2026-06-28 18:43:05 | INFO     | src.trainer:print_summary:233 - Embedding dimension: 768
+2026-06-28 18:43:05 | INFO     | src.trainer:print_summary:236 - 
+--- Model Performance ---
+2026-06-28 18:43:05 | INFO     | src.trainer:print_summary:241 - clause_classification: Accuracy = 0.8640
+2026-06-28 18:43:05 | INFO     | src.trainer:print_summary:243 - risk_regression: R² = 0.7332
+2026-06-28 18:43:05 | INFO     | src.trainer:print_summary:244 - risk_regression: RMSE = 0.1136
+2026-06-28 18:43:05 | INFO     | src.trainer:print_summary:241 - risk_level_classification: Accuracy = 0.8328
+2026-06-28 18:43:05 | INFO     | src.trainer:print_summary:241 - compliance_classification: Accuracy = 0.9041
+2026-06-28 18:43:05 | INFO     | src.trainer:print_summary:246 - ============================================================
+2026-06-28 18:43:05 | INFO     | src.trainer:save_results:277 - Evaluation results saved to outputs\evaluation_results.json
+2026-06-28 18:43:05 | INFO     | src.trainer:_create_summary_report:326 - Training report saved to outputs\training_report.txt
+2026-06-28 18:43:05 | INFO     | __main__:train_mode:121 - Training completed successfully
+2026-06-28 18:43:05 | INFO     | __main__:train_mode:122 - Models saved to: models
+2026-06-28 18:43:05 | INFO     | __main__:train_mode:123 - Results saved to: outputs
